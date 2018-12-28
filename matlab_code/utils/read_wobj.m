@@ -29,7 +29,7 @@ function OBJ=read_wobj(fullfilename)
 %
 % Function is written by D.Kroon University of Twente (June 2010)
 
-verbose=true;
+verbose=false;
 
 if(exist('fullfilename','var')==0)
     [filename, filefolder] = uigetfile('*.obj', 'Read obj-file');
