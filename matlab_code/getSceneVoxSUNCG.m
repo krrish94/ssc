@@ -1,10 +1,10 @@
 function [sceneVox, voxOriginWorld] = getSceneVoxSUNCG(pathToData,sceneId,floorId,roomId,extCam2World)
 % Notes: grid is Z up while the The loaded houses are Y up 
 %{
-pathToData = '/n/fs/suncg/data/planner5d/';
+pathToData = '/home/jatavalk/data/suncg/';
 sceneId = '000514ade3bcc292a613a4c2755a5050';
 floorId = 1;
-roomId = 1;
+roomId = 0;
 cameraPose = [43.9162 1.64774 50.0449  0.0417627 -0.196116 -0.979691  0.00835255 0.980581 -0.195938  0.55 0.430998  17.8815];
 extCam2World = camPose2Extrinsics(cameraPose);
 extCam2World = [[1 0 0; 0 0 1; 0 1 0]*extCam2World(1:3,1:3)*[1 0 0; 0 0 1; 0 1 0] extCam2World([1,3,2],4)];
@@ -84,7 +84,7 @@ if isfield(roomStruct, 'nodeIndices')
         object_struct = floorStruct.nodes{objId+1};
         if isfield(object_struct, 'modelId')
             % Set segmentation class ID
-            [classRootName,classRootId] = getobjclassSUNCG(strrep(object_struct.modelId,'/','__'),objcategory);
+            [classRootName, classRootId] = getobjclassSUNCG(strrep(object_struct.modelId,'/','__'),objcategory);
 
             % Compute object bbox in world coordinates
             objBbox = [object_struct.bbox.min([1,3,2])',object_struct.bbox.max([1,3,2])'];
