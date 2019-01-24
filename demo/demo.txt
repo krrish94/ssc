@@ -104,7 +104,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
@@ -152,7 +152,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
@@ -206,7 +206,7 @@ layer {
     pool: MAX
     kernel_size: 2
     stride: 2
-    engine: CUDNN
+    engine: CAFFE
   }
 }
 layer {
@@ -247,7 +247,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
@@ -276,7 +276,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
@@ -318,7 +318,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
@@ -347,7 +347,7 @@ layer {
     bias_filler {
       type: "constant"
     }
-    engine: CUDNN
+    engine: CAFFE
     axis: 1
   }
 }
