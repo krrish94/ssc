@@ -37,7 +37,7 @@ __global__ void Kernel_set_value(size_t CUDA_NUM_LOOPS, size_t N, Dtype* GPUdst,
 template <typename Dtype>
 void ReadDepthImage(const std::string &filename, Dtype * depth_data,
                     int frame_width, int frame_height) {
-  cv::Mat depth_image = cv::imread(filename.c_str(), CV_LOAD_IMAGE_ANYDEPTH);
+  cv::Mat depth_image = cv::imread(filename.c_str(), cv::IMREAD_ANYDEPTH);
   unsigned short * depth_raw = new unsigned short[frame_height * frame_width];
   for (int i = 0; i < frame_height * frame_width; ++i) {
     depth_raw[i] = ((((unsigned short)depth_image.data[i * 2 + 1]) << 8) +
@@ -276,7 +276,7 @@ void SquaredDistanceTransform(Dtype * cam_info, Dtype * vox_info, Dtype * depth_
   // Encode height from floor
   if (vox_height != NULL) {
     Dtype height_val = ((point_base[2] + 0.2f) / 2.5f);
-    vox_height[vox_idx] = Dtype(fmin(1.0f, fmax(height_val, 0.0f)));
+    vox_height[vox_idx] = Dtype(min(1.0f, max(height_val, 0.0f)));
   }
 
   // Get point in current camera coordinates
@@ -407,7 +407,7 @@ __global__ void Integrate(Dtype * cam_info, Dtype * vox_info, Dtype * depth_data
     // Encode height from floor
     if (vox_height != NULL) {
       Dtype height_val = ((point_base[2] + 0.2f) / 2.5f);
-      vox_height[vox_idx] = GPUCompute2Dtype(fmin(1.0f, fmax(height_val, 0.0f)));
+      vox_height[vox_idx] = GPUCompute2Dtype(min(1.0f, max(height_val, 0.0f)));
     }
 
     // Get point in current camera coordinates

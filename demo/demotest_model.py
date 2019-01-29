@@ -60,7 +60,9 @@ def test_model():
     predictions = []
     
     for i in range(numof_files):
+        print('Forwarding input', i)
         out = net.forward() 
+        print('Output obtained')
         # write volumne
         fp = h5py.File(output_file + '.hdf5', "w")
         predictions = np.array(net.blobs['prob'].data)
